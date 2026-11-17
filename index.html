@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#171722">
+  <title>Risa's Phone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="phone" id="phone">
+
+  <!-- LOCK SCREEN -->
+  <section class="lock-screen screen" id="lockScreen">
+    <div class="lock-status">
+      <div class="lock-date" id="lockDate"></div>
+      <h1 id="lockTime">00:00</h1>
+      <p>Good things take time ♡</p>
+    </div>
+
+    <div class="lock-bottom" id="lockBottom">
+      <button class="round-button" id="lockFlash">ϟ</button>
+      <span>Swipe up to unlock</span>
+      <button class="round-button" id="lockCamera">◉</button>
+    </div>
+
+    <div class="passcode-panel hidden" id="passcodePanel">
+      <h2>Enter Passcode</h2>
+      <p>Unlock Risa's Phone</p>
+      <div class="passcode-dots" id="passcodeDots">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="passcode-keypad" id="passcodeKeypad">
+        <button data-digit="1">1</button>
+        <button data-digit="2">2</button>
+        <button data-digit="3">3</button>
+        <button data-digit="4">4</button>
+        <button data-digit="5">5</button>
+        <button data-digit="6">6</button>
+        <button data-digit="7">7</button>
+        <button data-digit="8">8</button>
+        <button data-digit="9">9</button>
+        <button class="empty-key" disabled></button>
+        <button data-digit="0">0</button>
+        <button id="deleteDigit">⌫</button>
+      </div>
+      <p id="passcodeError"></p>
+    </div>
+
+    <div class="home-indicator"></div>
+  </section>
+
+
+  <!-- HOME SCREEN -->
+  <section class="home-screen screen hidden" id="homeScreen">
+    <div class="status-bar">
+      <span id="homeTime">00:00</span>
+      <div class="status-icons">
+        <span>▮▮▮</span>
+        <span>◉</span>
+        <span class="battery">18ϟ</span>
+      </div>
+    </div>
+
+    <div class="dynamic-island" id="dynamicIsland">
+      <img class="island-art" id="islandCover" src="assets/album/cover1.jpeg" alt="">
+      <div class="island-info">
+        <strong id="islandTitle">Not Playing</strong>
+        <small id="islandArtist">Music</small>
+      </div>
+      <button id="islandPlay">▶</button>
+    </div>
+
+    <div class="home-content">
+      <div class="widget-grid">
+        <button class="widget photo-widget" data-open="photos">
+          <div class="widget-heading"><span>Photos</span><span>♡</span></div>
+          <img src="assets/photos/photo1.jpeg" id="photoWidgetImage" alt="Photo preview">
+          <div class="widget-caption">Your little memories</div>
+        </button>
+
+        <button class="widget music-widget" data-open="music">
+          <div class="widget-heading"><span>Now Playing</span><span>♫</span></div>
+          <img src="assets/album/cover1.jpeg" id="musicWidgetImage" alt="Album cover">
+          <div class="widget-song" id="widgetSongTitle">A Perfect Christmas</div>
+          <div class="widget-artist" id="widgetSongArtist">Jose Mari Chan</div>
+          <div class="widget-controls"><span>♫</span><span id="widgetPlayIcon">▶</span><span>♡</span></div>
+        </button>
+      </div>
+
+      <div class="app-grid">
+        <button class="app-icon" data-open="maps">
+          <img src="assets/icons/maps.jpeg" alt="Maps"><small>Maps</small>
+        </button>
+        <button class="app-icon" data-open="messages">
+          <img src="assets/icons/messages.jpeg" alt="Messages"><small>Messages</small>
+        </button>
+        <button class="app-icon" data-open="messenger">
+          <img src="assets/icons/messenger.jpeg" alt="Messenger"><small>Messenger</small>
+        </button>
+        <button class="app-icon" data-open="notes">
+          <img src="assets/icons/notes.jpeg" alt="Notes"><small>Notes</small>
+        </button>
+        <button class="app-icon" data-open="phone">
+          <img src="assets/icons/phone.jpeg" alt="Phone"><small>Phone</small>
+        </button>
+        <button class="app-icon" data-open="music">
+          <img src="assets/icons/spotify.jpeg" alt="Spotify"><small>Spotify</small>
+        </button>
+        <button class="app-icon" data-open="photos">
+          <div class="photos-app-icon">✿</div><small>Photos</small>
+        </button>
+        <button class="app-icon" data-open="contacts">
+          <div class="contacts-app-icon"><span>●</span><span>▰</span></div>
+          <small>Contacts</small>
+        </button>
+        <button class="app-icon" data-open="settings">
+          <div class="settings-app-icon">⚙</div><small>Settings</small>
+        </button>
+        <button class="app-icon" data-open="camera">
+          <div class="camera-app-icon">◉</div><small>Camera</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="dock">
+      <button class="dock-icon" data-open="phone">
+        <img src="assets/icons/phone.jpeg" alt="Phone">
+      </button>
+      <button class="dock-icon" data-open="messages">
+        <img src="assets/icons/messages.jpeg" alt="Messages">
+      </button>
+      <button class="dock-icon" data-open="music">
+        <img src="assets/icons/spotify.jpeg" alt="Spotify">
+      </button>
+      <button class="dock-icon" data-open="contacts">
+        <div class="dock-contacts-icon">●</div>
+      </button>
+    </div>
+
+    <div class="home-indicator" id="homeIndicator"></div>
+  </section>
+
+
+  <!-- CONTROL CENTER -->
+  <section class="control-center hidden" id="controlCenter">
+    <div class="cc-header">
+      <strong>Control Center</strong>
+      <button id="closeControl">Done</button>
+    </div>
+    <div class="cc-grid">
+      <button class="cc-tile active" data-toggle="wifi">◉<small>Wi-Fi</small></button>
+      <button class="cc-tile active" data-toggle="bluetooth">ᛒ<small>Bluetooth</small></button>
+      <button class="cc-tile" data-toggle="airplane">✈<small>Airplane</small></button>
+      <button class="cc-tile" data-toggle="focus">☾<small>Focus</small></button>
+    </div>
+    <div class="cc-slider">
+      <label>☀ Brightness</label>
+      <input type="range" id="brightnessSlider" min="30" max="100" value="100">
+    </div>
+    <div class="cc-slider">
+      <label>♫ Volume</label>
+      <input type="range" id="volumeSlider" min="0" max="100" value="70">
+    </div>
+    <button class="cc-wallpaper" id="ccWallpaper">Change Wallpaper</button>
+    <div class="home-indicator"></div>
+  </section>
+
+
+  <!-- APP WINDOW -->
+  <section class="app-window hidden" id="appWindow">
+    <header class="app-header">
+      <button id="backHome">‹</button>
+      <h2 id="appTitle">App</h2>
+      <button id="closeApp">×</button>
+    </header>
+
+    <!-- PHOTOS -->
+    <div class="app-page hidden" id="pagePhotos">
+      <h3>Library</h3>
+      <p class="muted">Your favorite little moments ♡</p>
+      <div class="photo-gallery" id="photoGallery"></div>
+      <div class="photo-viewer hidden" id="photoViewer">
+        <button id="closePhotoViewer">×</button>
+        <img id="largePhoto" src="" alt="Selected photo">
+      </div>
+    </div>
+
+    <!-- MUSIC / SPOTIFY -->
+    <div class="app-page hidden" id="pageMusic">
+      <h3>Made for you ♡</h3>
+
+      <div class="music-player">
+        <img id="playerArt" src="assets/album/cover1.jpeg" alt="Album artwork">
+        <h2 id="playerTitle">A Perfect Christmas</h2>
+        <p id="playerArtist">Jose Mari Chan</p>
+
+        <div class="progress-area">
+          <input type="range" id="musicProgress" min="0" max="100" value="0">
+          <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <button id="prevTrack">|◀</button>
+          <button class="play-button" id="playTrack">▶</button>
+          <button id="nextTrack">▶|</button>
+        </div>
+
+        <h3 class="playlist-heading">My Music</h3>
+        <div id="playlist"></div>
+      </div>
+
+      <div class="spotify-section">
+        <div class="spotify-heading">
+          <div>
+            <h2>Spotify</h2>
+            <p>Your playlist, your music.</p>
+          </div>
+          <span class="spotify-logo">●</span>
+        </div>
+
+        <div class="spotify-playlist">
+          <button class="spotify-track active" data-spotify-track="0">
+            <img src="assets/album/cover1.jpeg" alt="Track 1 cover">
+            <span>Spotify Track 1</span><span class="spotify-play-icon">▶</span>
+          </button>
+          <button class="spotify-track" data-spotify-track="1">
+            <img src="assets/album/cover2.jpeg" alt="Track 2 cover">
+            <span>Spotify Track 2</span><span class="spotify-play-icon">▶</span>
+          </button>
+          <button class="spotify-track" data-spotify-track="2">
+            <img src="assets/album/cover3.jpeg" alt="Track 3 cover">
+            <span>Spotify Track 3</span><span class="spotify-play-icon">▶</span>
+          </button>
+          <button class="spotify-track" data-spotify-track="3">
+            <img src="assets/album/cover4.jpeg" alt="Track 4 cover">
+            <span>Spotify Track 4</span><span class="spotify-play-icon">▶</span>
+          </button>
+        </div>
+
+        <div class="spotify-embed-container">
+          <iframe
+            id="spotifyEmbed"
+            title="Spotify player"
+            src="https://open.spotify.com/embed/track/0a6MYHhBrSpRFEffkat6R5?utm_source=generator&theme=0"
+            width="100%" height="152" frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+        <a id="openSpotify" class="spotify-open-link"
+           href="https://open.spotify.com/track/0a6MYHhBrSpRFEffkat6R5"
+           target="_blank" rel="noopener">Open in Spotify ↗</a>
+      </div>
+    </div>
+
+
+    <!-- NOTES -->
+    <div class="app-page hidden" id="pageNotes">
+      <div class="notes-top">
+        <div>
+          <h3>Notes</h3>
+          <p class="muted">Your thoughts, all in one place ♡</p>
+        </div>
+        <button class="primary-button" id="newNote">＋ New</button>
+      </div>
+
+      <input class="search-input" id="notesSearch" type="search" placeholder="Search notes">
+
+      <div class="notes-layout">
+        <div class="notes-list" id="notesList"></div>
+
+        <div class="note-editor" id="noteEditor">
+          <input id="noteTitle" type="text" placeholder="Title">
+          <textarea id="noteBody" placeholder="Start writing..."></textarea>
+          <div class="note-actions">
+            <button class="primary-button" id="saveNote">Save</button>
+            <button class="soft-button" id="deleteNote">Delete</button>
+          </div>
+          <p class="muted" id="noteStatus">Changes save automatically.</p>
+        </div>
+      </div>
+
+      <label class="import-button">
+        Import notes (.txt / .md)
+        <input type="file" id="notesImport" accept=".txt,.md,text/plain,text/markdown" multiple hidden>
+      </label>
+      <p class="muted">Notes are stored in this browser on this device.</p>
+    </div>
+
+
+    <!-- CONTACTS -->
+    <div class="app-page hidden" id="pageContacts">
+      <div class="contacts-top">
+        <div>
+          <h3>Contacts</h3>
+          <p class="muted">The people who matter ♡</p>
+        </div>
+        <button class="primary-button" id="addContact">＋ Add</button>
+      </div>
+
+      <input class="search-input" id="contactsSearch" type="search" placeholder="Search contacts">
+
+      <div id="contactsList" class="contacts-list"></div>
+
+      <div id="contactEditor" class="contact-editor hidden">
+        <div class="contact-editor-header">
+          <h3 id="contactEditorHeading">New Contact</h3>
+          <button id="cancelContact" class="soft-button">Cancel</button>
+        </div>
+
+        <div class="contact-photo-picker">
+          <div class="contact-photo-preview" id="contactPhotoPreview">＋</div>
+          <label class="photo-upload-button">
+            Choose Photo
+            <input type="file" id="contactPhotoInput" accept="image/*" hidden>
+          </label>
+          <button type="button" class="text-button" id="removeContactPhoto">Remove photo</button>
+        </div>
+
+        <label class="field-label">First name</label>
+        <input class="form-input" id="contactFirstName" type="text" placeholder="First name">
+
+        <label class="field-label">Last name</label>
+        <input class="form-input" id="contactLastName" type="text" placeholder="Last name">
+
+        <label class="field-label">Phone number</label>
+        <input class="form-input" id="contactPhone" type="tel" placeholder="Phone number">
+
+        <label class="field-label">Email</label>
+        <input class="form-input" id="contactEmail" type="email" placeholder="Email address">
+
+        <label class="field-label">Birthday</label>
+        <input class="form-input" id="contactBirthday" type="date">
+
+        <label class="field-label">Notes</label>
+        <textarea class="form-input contact-notes" id="contactExtra" placeholder="Additional details"></textarea>
+
+        <button class="primary-button full-button" id="saveContact">Save Contact</button>
+      </div>
+
+      <div id="contactProfile" class="contact-profile hidden">
+        <button class="text-button profile-back" id="profileBack">‹ All Contacts</button>
+        <div class="profile-photo" id="profilePhoto">♡</div>
+        <h2 id="profileName">Contact Name</h2>
+        <p class="muted" id="profileDetails"></p>
+        <div class="profile-actions">
+          <a id="profileCall" class="profile-action" href="#">☎<small>Call</small></a>
+          <a id="profileMessage" class="profile-action" href="#">▤<small>Message</small></a>
+          <a id="profileEmail" class="profile-action" href="#">✉<small>Email</small></a>
+        </div>
+        <div class="profile-info" id="profileInfo"></div>
+        <button class="primary-button full-button" id="editContact">Edit Contact</button>
+        <button class="soft-button full-button danger-button" id="removeContact">Delete Contact</button>
+      </div>
+    </div>
+
+
+    <!-- MESSAGES -->
+    <div class="app-page hidden" id="pageMessages">
+      <div class="imessage-screen">
+        <div class="imessage-header">
+          <button class="imessage-back" type="button">‹</button>
+          <div class="imessage-contact">
+            <div class="imessage-avatar">L</div>
+            <div class="imessage-name">Lea <span>›</span></div>
+          </div>
+          <button class="imessage-info" type="button">ⓘ</button>
+        </div>
+
+        <div class="imessage-chat">
+          <div class="imessage-date">iMessage</div>
+        </div>
+
+        <div class="imessage-input-area">
+          <button class="imessage-plus" type="button">+</button>
+          <input type="text" id="messageInput" class="imessage-text-input" placeholder="iMessage" autocomplete="off">
+          <button type="button" id="sendMessage" class="imessage-send">↑</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MESSENGER -->
+    <div class="app-page hidden" id="pageMessenger">
+      <h3>Messenger</h3>
+      <div class="empty-message">♡<p>Your Messenger conversations will appear here.</p></div>
+    </div>
+
+
+    <!-- MAPS -->
+    <div class="app-page hidden" id="pageMaps">
+      <h3>Maps</h3>
+      <div class="empty-message">
+        ♡<p>Explore places around you.</p>
+        <button class="external-app-button" id="openMaps">Open Maps</button>
+      </div>
+    </div>
+
+
+    <!-- PHONE -->
+    <div class="app-page hidden" id="pagePhone">
+      <h3>Phone</h3>
+      <div class="dial-display" id="dialDisplay"></div>
+      <div class="dial-pad" id="dialPad">
+        <button>1</button><button>2</button><button>3</button>
+        <button>4</button><button>5</button><button>6</button>
+        <button>7</button><button>8</button><button>9</button>
+        <button>*</button><button>0</button><button>#</button>
+      </div>
+      <button class="call-button" id="clearDial">Clear</button>
+      <button class="call-button" id="callDial">Call</button>
+    </div>
+
+
+    <!-- SETTINGS -->
+    <div class="app-page hidden" id="pageSettings">
+      <h3>Settings</h3>
+      <div class="settings-row"><span>Wallpaper</span><button id="settingsWallpaper">Change ›</button></div>
+      <div class="settings-row"><span>Lock Phone</span><button id="settingsLock">Lock ›</button></div>
+      <div class="settings-row"><span>Control Center</span><button id="settingsControl">Open ›</button></div>
+      <div class="settings-row"><span>Passcode</span><span>Enabled</span></div>
+      <div class="settings-row"><span>About</span><span>Risa's Phone</span></div>
+    </div>
+
+
+    <!-- CAMERA -->
+    <div class="app-page hidden" id="pageCamera">
+      <h3>Camera</h3>
+      <video id="cameraVideo" autoplay playsinline></video>
+      <button class="camera-action" id="startCamera">Open Camera</button>
+      <button class="camera-action" id="takePhoto">Take Photo</button>
+      <p class="muted">Camera access requires your permission and HTTPS.</p>
+      <canvas id="cameraCanvas" class="hidden"></canvas>
+    </div>
+
+    <div class="app-page hidden" id="pageOther">
+      <div class="empty-message">♡<p>This app is ready to be customized.</p></div>
+    </div>
+  </section>
+
+
+  <!-- WALLPAPER MENU -->
+  <section class="wallpaper-menu hidden" id="wallpaperMenu">
+    <div class="wallpaper-box">
+      <div class="wallpaper-header">
+        <h3>Choose Wallpaper</h3>
+        <button id="closeWallpaper">×</button>
+      </div>
+      <div class="wallpaper-options">
+        <button data-wallpaper="original" class="wallpaper-choice original-wallpaper">Original</button>
+        <button data-wallpaper="pink" class="wallpaper-choice pink-wallpaper">Pink</button>
+        <button data-wallpaper="blue" class="wallpaper-choice blue-wallpaper">Blue</button>
+        <button data-wallpaper="purple" class="wallpaper-choice purple-wallpaper">Purple</button>
+        <button data-wallpaper="yellow" class="wallpaper-choice yellow-wallpaper">Yellow</button>
+      </div>
+      <label class="upload-wallpaper">
+        Upload your own wallpaper
+        <input type="file" id="wallpaperUpload" accept="image/*" hidden>
+      </label>
+    </div>
+  </section>
+
+  <audio id="musicAudio" preload="metadata"></audio>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
